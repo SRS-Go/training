@@ -1,24 +1,26 @@
 package main
 
-//this is how you import multiple packages
 import "fmt"
 
 func main() {
-	//condtional statements - if else elif
-	condtion := bool(true) == true
-	fmt.Println("This will always print")
-	if !condtion {
-		fmt.Println("This is inside if")
-	} else {
-		fmt.Println("This is inside Else")
+	//for loops and while loops
+	// there is no while loop in Go, for can work like while loop
+	x := 0
+	for x <= 5 {
+		fmt.Println("value of x=", x)
+		x++
 	}
 
-	age := 17
-	if age >= 18 {
-		fmt.Println("You can ride alone!")
-	} else if age >= 14 {
-		fmt.Println("You can ride with your parent!")
-	} else {
-		fmt.Printf("wait for %d years before you ride", 18-age)
+	for x := 0; x <= 100; x++ {
+
+		if x == 15 {
+			fmt.Printf("Skipped %d", x)
+			continue
+		}
+		if x == 20 {
+			fmt.Printf("Breaking loop at %d", x)
+			break
+		}
+		fmt.Println("x=", x)
 	}
 }
