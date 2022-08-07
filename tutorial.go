@@ -18,4 +18,9 @@ func main() {
 		sum += arr1[i]
 	}
 	fmt.Println(sum)
+
+	//multi dimetional array
+	arr2d := [2][3]int{{1, 2, 3}, {4, 5, 6}}
+	fmt.Println(arr2d)
+	fmt.Println(arr2d[0][2]) // access elements
 }
