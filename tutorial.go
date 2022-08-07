@@ -3,26 +3,19 @@ package main
 import "fmt"
 
 func main() {
-	//switch case
-	ans := 10
-	switch ans {
-	case 1, -1:
-		fmt.Println("One")
-	case 2:
-		fmt.Println("Two")
-	case 3:
-		fmt.Println("Three")
-	case 4:
-		fmt.Println("Four")
-	case 5:
-		fmt.Println("Five")
-	case 6:
-		fmt.Println("Six")
-	case 7:
-		fmt.Println("Seven")
-	case 8:
-		fmt.Println("Eight")
-	default:
-		fmt.Println("Not found")
+	//array in Go
+	var arr [5]int
+	fmt.Println(arr) //[0 0 0 0 0]
+	arr[3] = 6
+	fmt.Println(arr)
+	//arr[6] = 6 // index out of range error
+	//fmt.Println(arr)
+
+	arr1 := [3]int{4, 5, 6}
+	sum := 0
+	fmt.Println(arr1)
+	for i := 0; i < len(arr1); i++ {
+		sum += arr1[i]
 	}
+	fmt.Println(sum)
 }
