@@ -3,24 +3,18 @@ package main
 import "fmt"
 
 func main() {
-	//array in Go
-	var arr [5]int
-	fmt.Println(arr) //[0 0 0 0 0]
-	arr[3] = 6
-	fmt.Println(arr)
-	//arr[6] = 6 // index out of range error
-	//fmt.Println(arr)
+	var x [6]int = [6]int{1, 2, 3, 4, 5, 6}
+	var s []int = x[2:5] //where to start slice and where to end (excluding the end)
+	fmt.Println(x)
+	fmt.Println(s, len(s), cap(s)) //length gives the slice lenght, while cap gives the initial array capacity
+	fmt.Println(s[:cap(s)])
 
-	arr1 := [3]int{4, 5, 6}
-	sum := 0
-	fmt.Println(arr1)
-	for i := 0; i < len(arr1); i++ {
-		sum += arr1[i]
-	}
-	fmt.Println(sum)
+	var a []int = []int{11, 22, 33, 44, 55} //Cheat on Go to make array dynamic, initialize with no length
+	fmt.Println(cap(a[:3]))
 
-	//multi dimetional array
-	arr2d := [2][3]int{{1, 2, 3}, {4, 5, 6}}
-	fmt.Println(arr2d)
-	fmt.Println(arr2d[0][2]) // access elements
+	a = append(a, 66) //use append method to append element and store it as initial array name
+	fmt.Println(a)
+
+	b := make([]int, 5) //create empty slice
+	fmt.Println(b)
 }
