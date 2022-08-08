@@ -2,25 +2,22 @@ package main
 
 import "fmt"
 
-func main() {
-	var mp map[string]int = map[string]int{
-		"apple":  5,
-		"pear":   6,
-		"orange": 7,
-	}
-	fmt.Println(mp)
-	fmt.Println(mp["orange"]) //access the element
-	mp["apple"] = 20          // update the value
-	fmt.Println(mp)
-	mp["banana"] = 3 // add new key value pair
-	fmt.Println(mp)
-	delete(mp, "pear") //delete an element
-	fmt.Println(mp)
-	mp1 := make(map[string]int) // define empty map
-	mp1["good"] = 1
-	fmt.Println(mp1)
+//retunvalues with variable names created
+func add(x int, y int) (z1 float64, z2 float64) {
+	defer fmt.Println("This should happen at the end")
+	z1 = float64(x) / float64(y)
+	z2 = float64(y) / float64(x)
+	fmt.Printf("printing values of z1=%f z2=%f\n", z1, z2)
+	return z1, z2
+}
 
-	// check if key exists
-	val, ok := mp["apples"]
-	fmt.Println(val, ok)
+//following is valid, define data type only once if same data type
+func add2(x, y int) {
+	fmt.Println(x + y)
+}
+
+func main() {
+	x, y := add(15, 7)
+	fmt.Println(x, y)
+	add2(5, 6)
 }
