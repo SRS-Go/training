@@ -2,31 +2,27 @@ package main
 
 import "fmt"
 
-func test(x int) string {
-	return fmt.Sprintf("hello! %d", x)
-}
-
-func test4(myFunc func(int) string) {
-	fmt.Println("Inside test4, result=", myFunc(7))
-}
-
-func returnFunc(x string) func() {
-	return func() { fmt.Println(x) }
+func changeFirst(slice []int) {
+	slice[0] = 1000
 }
 
 func main() {
-	x := test // assign a value to variable and call the variable as function
-	fmt.Println("calling x as test, result=", x(5))
 
-	// this is how to create a function as a variable and call it
-	test2 := func(x int) int {
-		return x * -1
-	}(8)
-	fmt.Println("test2 called, result=", test2)
+	// slices are mutables (maps as well)
+	var x []int = []int{3, 4, 5}
+	y := x
+	y[0] = 100
+	fmt.Println(x, y)
 
-	test4(x) //here in test4 we are passing x which is a variable for func object test, test will return a string which will be printed in test4
+	// arrays are immutable
+	var xx [2]int = [2]int{1, 2}
+	yy := x
+	yy[1] = 3
+	fmt.Println(xx, yy)
 
-	returnFunc("hello")()
-	y := returnFunc("Hi")
-	y()
+	// change value in other function for mutable data
+	var slice []int = []int{2, 5, 7}
+	fmt.Println(slice)
+	changeFirst(slice)
+	fmt.Println(slice)
 }
