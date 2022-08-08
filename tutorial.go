@@ -2,22 +2,31 @@ package main
 
 import "fmt"
 
-//retunvalues with variable names created
-func add(x int, y int) (z1 float64, z2 float64) {
-	defer fmt.Println("This should happen at the end")
-	z1 = float64(x) / float64(y)
-	z2 = float64(y) / float64(x)
-	fmt.Printf("printing values of z1=%f z2=%f\n", z1, z2)
-	return z1, z2
+func test(x int) string {
+	return fmt.Sprintf("hello! %d", x)
 }
 
-//following is valid, define data type only once if same data type
-func add2(x, y int) {
-	fmt.Println(x + y)
+func test4(myFunc func(int) string) {
+	fmt.Println("Inside test4, result=", myFunc(7))
+}
+
+func returnFunc(x string) func() {
+	return func() { fmt.Println(x) }
 }
 
 func main() {
-	x, y := add(15, 7)
-	fmt.Println(x, y)
-	add2(5, 6)
+	x := test // assign a value to variable and call the variable as function
+	fmt.Println("calling x as test, result=", x(5))
+
+	// this is how to create a function as a variable and call it
+	test2 := func(x int) int {
+		return x * -1
+	}(8)
+	fmt.Println("test2 called, result=", test2)
+
+	test4(x) //here in test4 we are passing x which is a variable for func object test, test will return a string which will be printed in test4
+
+	returnFunc("hello")()
+	y := returnFunc("Hi")
+	y()
 }
