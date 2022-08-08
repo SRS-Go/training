@@ -3,30 +3,24 @@ package main
 import "fmt"
 
 func main() {
-	var a []int = []int{1, 3, 4, 5, 6, 7, 4, 11}
-	fmt.Println(a)
-	for i, element := range a {
-		fmt.Println(i, element)
+	var mp map[string]int = map[string]int{
+		"apple":  5,
+		"pear":   6,
+		"orange": 7,
 	}
+	fmt.Println(mp)
+	fmt.Println(mp["orange"]) //access the element
+	mp["apple"] = 20          // update the value
+	fmt.Println(mp)
+	mp["banana"] = 3 // add new key value pair
+	fmt.Println(mp)
+	delete(mp, "pear") //delete an element
+	fmt.Println(mp)
+	mp1 := make(map[string]int) // define empty map
+	mp1["good"] = 1
+	fmt.Println(mp1)
 
-	// if not using index
-	for _, element := range a {
-		fmt.Println(element)
-	}
-
-	// print only unique element
-	for i, element := range a {
-		for j := i + 1; j < len(a); j++ {
-			if a[j] == element {
-				fmt.Println("duplicates:", element)
-			}
-		}
-	}
-	// print 2d array
-	var arr2d [2][3]int = [2][3]int{{1, 2, 3}, {4, 5, 6}}
-	for _, element := range arr2d {
-		for _, element2 := range element {
-			fmt.Println(element2)
-		}
-	}
+	// check if key exists
+	val, ok := mp["apples"]
+	fmt.Println(val, ok)
 }
