@@ -1,46 +1,42 @@
 package main
 
-import "fmt"
+import (
+	"fmt"
+	"math"
+)
 
-//this is how you define struct
-type Student struct {
-	name   string
-	grades []int
-	age    int
+type Shape interface {
+	area() float64
 }
 
-func (s Student) getAge() int {
-	return s.age
+type Circle struct {
+	radius float64
 }
 
-func (s *Student) setAge(age int) {
-	s.age = age
+type Rect struct {
+	width  float64
+	length float64
 }
 
-func (s Student) getAverageGrade() float32 {
-	sum := 0
-	for _, v := range s.grades {
-		sum += v
-	}
-	return float32(sum) / float32(len(s.grades))
+func (r *Rect) area() float64 {
+	return r.width * r.length
 }
 
-// this how to define methods for structs
-func (s *Student) getMaxGrade() int {
-	curMax := 0
-	for _, v := range s.grades {
-		if curMax < v {
-			curMax = v
-		}
-	}
-	return curMax
+func (c *Circle) area() float64 {
+	return math.Pi * c.radius
+}
+
+func getArea(s Shape) float64 {
+	return s.area()
 }
 
 func main() {
-	s1 := Student{"John", []int{65, 55, 59}, 19}
-	fmt.Println(s1.age)
-	s1.setAge(20)
-	fmt.Println(s1.getAge())
-	fmt.Println(s1.getAverageGrade())
-	fmt.Println(s1.getMaxGrade())
+	c1 := Circle{3.4}
+	r1 := Rect{4.1, 2}
+	shapes := []Shape{&c1, &r1}
+
+	for _, shape := range shapes {
+		fmt.Println("using a wrapper function", getArea(shape))
+		fmt.Println("Access through interface", shape.area())
+	}
 }
